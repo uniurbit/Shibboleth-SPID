@@ -359,7 +359,7 @@ Inserire il bean per il flow di autenticazione MFA.
 	</util:map>
 	```
 
-* `/opt/shibboleth-idp/views/login.vm`: inserire il bottone SPID **link sezione bottone SPID** e settare il tag `name` con l'evento `_eventId_ChooseMethodB`
+* `/opt/shibboleth-idp/views/login.vm`: inserire il [pulsante SPID](#implementazione-pulsante-spid) e settare il tag `name` con l'evento `_eventId_ChooseMethodB`
 
 * `/opt/shibboleth-idp/conf/authn/authn-events-flow.xml`:
 
@@ -409,7 +409,7 @@ Per l'implementazione di questa soluzione è necessario eseguire le seguenti mod
 
   ```
   
- * `views/login.vm`: inserire il bottone per l'accesso con SPID: **link creazione bototne SPID** e per ogni tag, impostare `href` e `views/onclick`
+ * `views/login.vm`: inserire il [pulsante SPID](#implementazione-pulsante-spid) e per ogni tag, impostare `href` e `views/onclick`
 
 Per terminare occorre proseguire in sezione **link Configurazione comune ad entrambi i flussi di autenticazione**
 
@@ -480,7 +480,7 @@ Di seguito i passi necessari per permettere il rilascio degli attributi istituzi
 * riavviare i servivi con il file nella root del server `root/restart.sh`
 
 
-### Implementazione pulsante SPID [Implementazione pulsante SPID](#pulsanteSPID)
+### Implementazione pulsante SPID
 Configurare il link dell'evento autenticazione SPID nel file `/opt/shibboleth-idp/views/login.vm` 
 
 AgID ha definito un template dell'interfaccia grafica dell'autenticazione SPID, il bundle è presente a questo indirizzo : https://github.com/italia/spid-sp-access-button/   
