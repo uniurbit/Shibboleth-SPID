@@ -374,7 +374,7 @@ Inserire il bean per il flow di autenticazione MFA.
 **Terminate le modifiche** per applicarle è necessario:
 
 * ricompilare il container eseguendo il file `bin/build.sh`
-* riavviare i servivi con il file nella root del server `root/restart.sh`
+* riavviare i servizi con il file nella root del server `root/restart.sh`
 
 Per terminare occorre proseguire in sezione [configurazione comune ad entrambi i flussi di autenticazione](#configurazione-comune-ad-entrambi-i-flussi-di-autenticazione).
 
