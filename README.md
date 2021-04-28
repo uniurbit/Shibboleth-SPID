@@ -376,7 +376,7 @@ Inserire il bean per il flow di autenticazione MFA.
 * ricompilare il container eseguendo il file `bin/build.sh`
 * riavviare i servivi con il file nella root del server `root/restart.sh`
 
-Per terminare occorre proseguire in sezione **link Configurazione comune ad entrambi i flussi di autenticazione**
+Per terminare occorre proseguire in sezione [configurazione comune ad entrambi i flussi di autenticazione](#configurazione-comune-ad-entrambi-i-flussi-di-autenticazione).
 
 #### Problematiche dell'autenticazione MFA
 Il flusso di autenticazione MFA non è compatibile con la configurazione dell'IDP Shibboleth custom con autenticazione tramite RADIUS. 
@@ -411,7 +411,7 @@ Per l'implementazione di questa soluzione è necessario eseguire le seguenti mod
   
  * `views/login.vm`: inserire il [pulsante SPID](#implementazione-pulsante-spid) e per ogni tag, impostare `href` e `views/onclick`
 
-Per terminare occorre proseguire in sezione **link Configurazione comune ad entrambi i flussi di autenticazione**
+Per terminare occorre proseguire in sezione [configurazione comune ad entrambi i flussi di autenticazione](#configurazione-comune-ad-entrambi-i-flussi-di-autenticazione).
 
 ### Configurazione comune ad entrambi i flussi di autenticazione
 Di seguito i passi della configurazione comuni ad entrambe le configurazioni:
@@ -686,7 +686,7 @@ Define VAR_ID_HEADERIDP	headeridp
     </Location>
 	```
 
-* `Location` dopo l'autenticazione esterna: si settano come header gli attributi passatti dall'IDPext così da poterli risolvere nell'IDPint. Questo è possibile grazie all'oggetto `shibboleth.HttpServletRequest` che permette di utilizzare le variabili server in IDPint. **NOTA**: questa soluzione utilizza gli header HTTP per trasportare i dati degli attributi e del `REMOTE_USER`, che contribuiranno a ricavare il Principal Name finale. Vanno quindi utilizzate delle accortezze per evitare che un utente possa "forgiare" header per impersonare terzi: a questo scopo è fondamentale azzerare sempre tutti gli header coinvolti; inoltre è bene utilizzare nomi di header non ovvi, in modo da rendere più complicata l'impresa ad un eventuale intruso.Vedere la sezione  **link Mappatura attributi SPID - apache e attribute_resolver.xml di IDPint**.
+* `Location` dopo l'autenticazione esterna: si settano come header gli attributi passatti dall'IDPext così da poterli risolvere nell'IDPint. Questo è possibile grazie all'oggetto `shibboleth.HttpServletRequest` che permette di utilizzare le variabili server in IDPint. **NOTA**: questa soluzione utilizza gli header HTTP per trasportare i dati degli attributi e del `REMOTE_USER`, che contribuiranno a ricavare il Principal Name finale. Vanno quindi utilizzate delle accortezze per evitare che un utente possa "forgiare" header per impersonare terzi: a questo scopo è fondamentale azzerare sempre tutti gli header coinvolti; inoltre è bene utilizzare nomi di header non ovvi, in modo da rendere più complicata l'impresa ad un eventuale intruso.
 
 	```
     <Location "/idp/profile">
