@@ -37,7 +37,14 @@ Il flusso di esecuzione può essere sintetizzato come segue:
 4. l'utente autenticato ritorna su SP1, con gli attributi richiesti
 
 ###  Diagramma del flusso
+<p align="center">
+	<img alt="Diagramma flusso autenticazione Shibboleth SPID" src="https://github.com/uniurbit/Shibboleth-SPID/blob/main/diagramma-flusso-autenticazione-shibboleth-spid.jpeg"/>
+</p>
+
 ###  Diagramma interazione componenti
+<p align="center">
+	<img alt="Diagramma interazione autenticazione Shibboleth SPID" src="https://github.com/uniurbit/Shibboleth-SPID/blob/main/diagramma-interazione-autenticazione-shibboleth-spid.jpeg"/>
+</p>
 
 ## Requisiti Software
 - Debian 10
