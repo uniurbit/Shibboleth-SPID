@@ -848,4 +848,4 @@ Una volta che l'utente ha deciso quale ruolo avere è fondamentale passare quest
 ```
 
 
-Guida realizzata da Francesco Buresta e Alessia Ventani per l'Università degli Studi di Urbino Carlo Bo, Febbraio 2021.
+Guida realizzata da Francesco Buresta (francesco.buresta@uniurb.it) e Alessia Ventani (alessia.ventani@uniurb.it) per l'Università degli Studi di Urbino Carlo Bo, Febbraio 2021.
