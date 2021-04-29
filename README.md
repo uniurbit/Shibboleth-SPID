@@ -391,16 +391,17 @@ Inserire il bean per il flow di autenticazione MFA.
 Per terminare occorre proseguire in sezione [configurazione comune ad entrambi i flussi di autenticazione](#configurazione-comune-ad-entrambi-i-flussi-di-autenticazione).
 
 #### Problematiche dell'autenticazione MFA
-Il flusso di autenticazione MFA non è compatibile con la configurazione dell'IDP Shibboleth custom con autenticazione tramite RADIUS. 
+*In questa sezione si riporta una problematica che è stata riscontrata con MFA e una installazione di IDP Shibboleth compilato con il modulo per l'autenticazione su RADIUS, invece dello standard LDAP.*
+L'installazione custom di IDP Shibboleth e questa tipologia di autenticazione non sono compatibili.
 In particolare, il `Principal`, che rappresenta il risultato del flusso di autenticazione, deve essere della classe `Radius.jaas.RadiusPrincipal` per poter essere gestito dal plugin per RADIUS.
 Con la configurazione MFA invece: 
 
 1. viene attivato il flusso `MFA`
 2. si passa sul flusso di autenticazioen di default `Password`
 3. si autentica su RADIUS e si conclude il flusso di autenticazione `Password`
-4. il flusso MFA, per terminare, effettua lìoperazione di merge dei Principal e ritorna un oggetto di tipo `AuthenticationResultPrincipal` (classe [FinalizeMultiFactorAuthentication](https://www.codota.com/code/java/classes/net.shibboleth.idp.authn.impl.FinalizeMultiFactorAuthentication)) che produce un errore di cast con la classe `Radius.jaas.RadiusPrincipal` (da `AuthenticationResultPrincipal` a `Radius.jaas.RadiusPrincipal`)
+4. il flusso MFA, per terminare, effettua l'operazione di merge dei Principal e ritorna un oggetto di tipo `AuthenticationResultPrincipal` (classe [FinalizeMultiFactorAuthentication](https://www.codota.com/code/java/classes/net.shibboleth.idp.authn.impl.FinalizeMultiFactorAuthentication)) che produce un errore di cast con la classe `Radius.jaas.RadiusPrincipal` (da `AuthenticationResultPrincipal` a `Radius.jaas.RadiusPrincipal`)
 
-Questa problematica si risolve riportando l'autenticazione dell'IDP da RADIUS ad LDAP, operazione fatta con l'aggiornamento alla versione 4 dell'IDP.
+A questa problematica non è stata trovata una soluzione ma si è proceduto con i [flussi di autenticazione Password e RemoteUser](#Configurazione-con-i-flussi-password-e-remoteuser) nell'IDP custom. La configurazione MFA è stata testata per una installazione IDP Shibboleth standard.
 
 ### Configurazione con i flussi Password e RemoteUser
 Mappatura Realm nei numeri nelle configurazione di IDPint</a>La tipologia di autenticazione utilizzata per questa soluzione è Password e RemoteUser
