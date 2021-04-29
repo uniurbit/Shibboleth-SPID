@@ -392,6 +392,7 @@ Per terminare occorre proseguire in sezione [configurazione comune ad entrambi i
 
 #### Problematiche dell'autenticazione MFA
 *In questa sezione si riporta una problematica che è stata riscontrata con MFA e una installazione di IDP Shibboleth compilato con il modulo per l'autenticazione su RADIUS, invece dello standard LDAP.*
+
 L'installazione custom di IDP Shibboleth e questa tipologia di autenticazione non sono compatibili.
 In particolare, il `Principal`, che rappresenta il risultato del flusso di autenticazione, deve essere della classe `Radius.jaas.RadiusPrincipal` per poter essere gestito dal plugin per RADIUS.
 Con la configurazione MFA invece: 
