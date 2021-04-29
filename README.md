@@ -374,7 +374,19 @@ Inserire il bean per il flow di autenticazione MFA.
 **Terminate le modifiche** per applicarle è necessario:
 
 * ricompilare il container eseguendo il file `bin/build.sh`
-* riavviare i servizi con il file nella root del server `root/restart.sh`
+* riavviare i servizi:
+  ```
+  # stop di apache e jetty
+  /etc/init.d/apache2 stop
+  /etc/init.d/jetty stop
+  
+  # riavvio servizio di ldap (solo se si ha l'instanza di ldap nel medesimo server)
+  service slapd restart
+  
+  # avvio di apache e jetty
+  /etc/init.d/apache2 start
+  /etc/init.d/jetty start
+  ```
 
 Per terminare occorre proseguire in sezione [configurazione comune ad entrambi i flussi di autenticazione](#configurazione-comune-ad-entrambi-i-flussi-di-autenticazione).
 
@@ -477,8 +489,20 @@ Di seguito i passi necessari per permettere il rilascio degli attributi istituzi
 **Terminate le modifiche** per applicarle è necessario:
 
 * ricompilare il container eseguendo il file `bin/build.sh`
-* riavviare i servivi con il file nella root del server `root/restart.sh`
-
+* riavviare i servivi:
+  
+  ```
+  # stop di apache e jetty
+  /etc/init.d/apache2 stop
+  /etc/init.d/jetty stop
+  
+  # riavvio servizio di ldap (solo se si ha l'instanza di ldap nel medesimo server)
+  service slapd restart
+  
+  # avvio di apache e jetty
+  /etc/init.d/apache2 start
+  /etc/init.d/jetty start
+  ```
 
 ### Implementazione pulsante SPID
 Configurare il link dell'evento autenticazione SPID nel file `/opt/shibboleth-idp/views/login.vm` 
