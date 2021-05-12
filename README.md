@@ -439,7 +439,7 @@ Di seguito i passi della configurazione comuni ad entrambe le configurazioni:
         <!-- SPID -->
         <init-param>
            <!-- permette di riconoscere gli headers -->
-            <param-name>idpext-Id</param-name>
+            <param-name>checkHeaders</param-name>
             <param-value>idpext-Id-value</param-value>
            <!-- permette di riconoscere gli headers -->
         </init-param>
