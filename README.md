@@ -809,6 +809,96 @@ Inoltre:
     * https://issues.shibboleth.net/jira/browse/IDP-1623
     * https://wiki.shibboleth.net/confluence/display/IDP4/ReleaseNotes
 
+#### Definizione attributi SPID in Shibboleth IDP 4
+
+L'unica nota di rilievo riguarda introduzione dell'[`AttributeRegistry`](https://wiki.shibboleth.net/confluence/display/IDP4/AttributeRegistryConfiguration). 
+
+E' stato creato un file dedicato in cui sono presenti le definizioni degli attributi SPID : `/opt/shibboleth-idp/conf/attributes/spid.xml`.
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+
+       default-init-method="initialize"
+       default-destroy-method="destroy">
+
+    <bean parent="shibboleth.TranscodingRuleLoader">
+    <constructor-arg>
+    <list>
+
+        <bean parent="shibboleth.TranscodingProperties">
+            <property name="properties">
+                <props merge="true">
+                    <prop key="id">spidSpidCode</prop>
+                    <prop key="transcoder">SAML2StringTranscoder</prop>
+                    <prop key="saml2.name">spidCode</prop>
+                    <prop key="saml2.nameFormat">urn:oasis:names:tc:SAML:2.0:attrname-format:basic</prop>
+                    <prop key="displayName.en">SPID spidCode</prop>
+                    <prop key="displayName.it">SPID spidCode</prop>
+                    <prop key="description.en">SPID identification code</prop>
+                    <prop key="description.it">SPID Codice identificativo</prop>
+                </props>
+            </property>
+        </bean>
+
+...
+
+        <bean parent="shibboleth.TranscodingProperties">
+            <property name="properties">
+                <props merge="true">
+                    <prop key="id">spidDigitalAddress</prop>
+                    <prop key="transcoder">SAML2StringTranscoder</prop>
+                    <prop key="saml2.name">spidDigitalAddress</prop>
+                    <prop key="saml2.nameFormat">urn:oasis:names:tc:SAML:2.0:attrname-format:basic</prop>
+                    <prop key="displayName.en">SPID digitalAddress</prop>
+                    <prop key="displayName.it">SPID digitalAddress</prop>
+                    <prop key="description.en">SPID DigitalAddress</prop>
+                    <prop key="description.it">SPID Domicilio digitale</prop>
+                </props>
+            </property>
+        </bean>
+    </list>
+    </constructor-arg>
+    </bean>
+
+</beans>
+```
+
+Questo deve essere importato all'interno di `/opt/shibboleth-idp/conf/attributes/default-rules.xml` altrimenti Shibboleth IDP non saprebbe applicare la codifica agli attributi da rilasciare.
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+
+       default-init-method="initialize"
+       default-destroy-method="destroy">
+
+    <import resource="inetOrgPerson.xml" />
+    <import resource="eduPerson.xml" />
+    <import resource="eduCourse.xml" />
+    <import resource="samlSubject.xml" />
+    <import resource="schac.xml" />
+    <import resource="spid.xml" />
+</beans>
+
+```
+
 ## Gestione identità multiple
 Una persona ha una sola identità SPID ma, all'interno di un sistema di autenticazione, può avere più identità corrispondenti a ruoli diversi. Occorre implementare un meccanismo che permetta all'utente di autenticarsi con SPID e scegliere con quale ruolo entrare nel servizio selezionato.
 
